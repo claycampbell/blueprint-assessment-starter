@@ -1,17 +1,14 @@
-import tailwindcssLogical from 'tailwindcss-logical'
-
-import tailwindPlugin from './src/@core/tailwind/plugin.mjs'
-
+/** @type {import('tailwindcss').Config} */
 const config = {
-  content: ['./src/**/*.{js,ts,jsx,tsx,css}'],
-  corePlugins: {
-    preflight: false
-  },
-  important: '#__next',
-  plugins: [tailwindcssLogical, tailwindPlugin],
+  content: [
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
   theme: {
-    extend: {}
-  }
+    extend: {},
+  },
+  plugins: [],
 }
 
 export default config
