@@ -33,9 +33,9 @@ export interface Project {
   address: string;
 
   /**
-   * Date project was created in the system
+   * Date project was created in the system (ISO 8601 format)
    */
-  createdAt: Date;
+  createdAt: string;
 
   /**
    * Optional: Brief project description
