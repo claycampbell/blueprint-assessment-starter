@@ -16,48 +16,30 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { Project, ProjectStatus } from '@/types/project';
-import { searchProjects } from '@/services/projectApi';
+import { ProjectStatus } from '@/types/project';
 import { useDebounce } from '@/hooks/useDebounce';
+import { useProjectSearchStore } from '@/stores/projectSearchStore';
 
 /**
  * ProjectSearch Component
  * Allows users to search and filter construction projects
  */
 export default function ProjectSearch() {
+  // Local state for search input (for immediate UI updates)
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+
+  // Zustand store state and actions
+  const { projects, loading, error, fetchProjects } = useProjectSearchStore();
 
   // Debounce search query to avoid excessive API calls
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
   /**
-   * Fetch projects based on search query
+   * Fetch projects based on debounced search query
    */
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const response = await searchProjects({
-          query: debouncedSearchQuery,
-        });
-
-        setProjects(response.projects);
-      } catch (err) {
-        setError(
-          err instanceof Error ? err.message : 'Failed to fetch projects'
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProjects();
-  }, [debouncedSearchQuery]);
+    fetchProjects(debouncedSearchQuery);
+  }, [debouncedSearchQuery, fetchProjects]);
 
   /**
    * Formats ISO date string to MM/DD/YYYY with padding
