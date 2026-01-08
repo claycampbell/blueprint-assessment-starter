@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
+
 import './globals.css'
+import ThemeRegistry from '@/components/ThemeRegistry'
 
 export const metadata: Metadata = {
   title: 'Connect 2.0 Assessment',
@@ -13,7 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ThemeRegistry>{children}</ThemeRegistry>
+      </body>
     </html>
   )
 }
