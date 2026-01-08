@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+
 import { Project } from '@/types/project';
 import { searchProjects } from '@/services/projectApi';
 

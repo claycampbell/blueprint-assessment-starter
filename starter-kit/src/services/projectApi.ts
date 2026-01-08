@@ -236,6 +236,7 @@ export async function searchProjects(
     // Filter by search query (case-insensitive, matches name OR address)
     if (query.trim()) {
       const searchTerm = query.toLowerCase().trim();
+
       filteredProjects = filteredProjects.filter(
         (project) =>
           project.name.toLowerCase().includes(searchTerm) ||

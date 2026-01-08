@@ -12,6 +12,7 @@ export type ProjectStatus =
   | 'On Hold';
 
 export interface Project {
+
   /**
    * Unique identifier for the project
    */
@@ -52,6 +53,7 @@ export interface Project {
  * Search query parameters for filtering projects
  */
 export interface ProjectSearchParams {
+
   /**
    * Search term to match against project name and address
    */
@@ -72,6 +74,7 @@ export interface ProjectSearchParams {
  * API response wrapper for project search results
  */
 export interface ProjectSearchResponse {
+
   /**
    * Array of matching projects
    */

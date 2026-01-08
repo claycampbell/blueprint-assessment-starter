@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+
 import {
   Alert,
   Box,
@@ -16,6 +17,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+
 import { ProjectStatus } from '@/types/project';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useProjectSearchStore } from '@/stores/projectSearchStore';
@@ -49,7 +51,9 @@ export default function ProjectSearch() {
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
     const year = date.getFullYear();
-    return `${month}/${day}/${year}`;
+
+    
+return `${month}/${day}/${year}`;
   };
 
   /**
@@ -136,6 +140,7 @@ export default function ProjectSearch() {
               </Typography>
             </Box>
           ) : (
+
             /* Results Table */
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="projects table">

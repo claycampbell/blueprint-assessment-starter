@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+
 import '@testing-library/jest-dom';
 import ProjectSearch from './ProjectSearch';
 import * as projectApi from '@/services/projectApi';
@@ -65,6 +66,7 @@ describe('ProjectSearch Component', () => {
     const searchInput = screen.getByPlaceholderText(
       'Search by project name or address...'
     );
+
     expect(searchInput).toBeInTheDocument();
 
     // Wait for loading to complete
@@ -165,6 +167,7 @@ describe('ProjectSearch Component', () => {
     const filteredProjects = mockProjects.filter((p) =>
       p.name.toLowerCase().includes('maple')
     );
+
     (projectApi.searchProjects as jest.Mock).mockResolvedValueOnce({
       projects: filteredProjects,
       total: filteredProjects.length,
@@ -175,6 +178,7 @@ describe('ProjectSearch Component', () => {
     const searchInput = screen.getByPlaceholderText(
       'Search by project name or address...'
     );
+
     fireEvent.change(searchInput, { target: { value: 'Maple' } });
 
     // Wait for debounce (300ms) + API call
@@ -200,6 +204,7 @@ describe('ProjectSearch Component', () => {
   test('displays error message when API fails', async () => {
     // Mock the API to reject with an error
     const errorMessage = 'Failed to fetch projects: Network error';
+
     (projectApi.searchProjects as jest.Mock).mockRejectedValue(
       new Error(errorMessage)
     );
@@ -213,6 +218,7 @@ describe('ProjectSearch Component', () => {
 
     // Verify error alert is displayed
     const errorAlert = screen.getByRole('alert');
+
     expect(errorAlert).toBeInTheDocument();
     expect(errorAlert).toHaveTextContent(errorMessage);
 
@@ -250,6 +256,7 @@ describe('ProjectSearch Component', () => {
     const searchInput = screen.getByPlaceholderText(
       'Search by project name or address...'
     );
+
     fireEvent.change(searchInput, {
       target: { value: 'NonexistentProject' },
     });
