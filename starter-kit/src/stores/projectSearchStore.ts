@@ -35,10 +35,18 @@ export const useProjectSearchStore = create<
   error: null,
 
   // Actions
+  /**
+   * Updates the search query in the store
+   * @param query - The search query string
+   */
   setSearchQuery: (query: string) => {
     set({ searchQuery: query });
   },
 
+  /**
+   * Fetches projects from the API based on search query
+   * @param query - Optional search query to filter projects
+   */
   fetchProjects: async (query?: string) => {
     try {
       set({ loading: true, error: null });
@@ -61,6 +69,9 @@ export const useProjectSearchStore = create<
     }
   },
 
+  /**
+   * Clears the error state
+   */
   clearError: () => {
     set({ error: null });
   },

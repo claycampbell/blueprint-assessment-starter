@@ -45,6 +45,8 @@ export default function ProjectSearch() {
 
   /**
    * Formats ISO date string to MM/DD/YYYY with padding
+   * @param isoDate - ISO 8601 date string (e.g., "2024-01-08T10:00:00Z")
+   * @returns Formatted date string in MM/DD/YYYY format (e.g., "01/08/2024")
    */
   const formatDate = (isoDate: string): string => {
     const date = new Date(isoDate);
@@ -58,6 +60,8 @@ return `${month}/${day}/${year}`;
 
   /**
    * Returns color for status chip based on project status
+   * @param status - The project status to get color for
+   * @returns Material-UI color prop for Chip component
    */
   const getStatusColor = (
     status: ProjectStatus
